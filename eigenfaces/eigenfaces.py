@@ -11,22 +11,25 @@ from util import read_image
 from model import EigenfacesModel
 
 if __name__=='__main__':
-    path = ''
-    if len(sys.argv) != 2:
-        print '请输入图片地址'
-        path = raw_input()
+    sample_path = ''
+    test_path = ''
+    if len(sys.argv) != 3:
+        print u'请输入样本图片地址（绝对路径）'
+        sample_path = raw_input()
+        print u'请输入测试图片地址（绝对路径）'
+        test_path = raw_input()
     else:
-        path = sys.argv[1]
+        sample_path = sys.argv[1]
+        test_path = sys.argv[2]
     
-    [X,y] = read_image(path)
+    [X,y] = read_image(sample_path)
     model = EigenfacesModel(X,y)
-    
+    [nX,ny] = read_image(test_path)
     count = 0
-    total = 50
-    for j in xrange(50):
-        i = np.random.randint(len(X))
-        if y[i]==model.predict(X[i]):
+    total = len(nX)
+    for i in xrange(total):
+        if y[i]==model.predict(nX[i]):
             count+=1
-        print 'expected=',y[i],r'/ predicted = ',model.predict(X[i])
+        print 'expected=',ny[i],r'/ predicted = ',model.predict(nX[i])
     print 'rate=',count/total
         
