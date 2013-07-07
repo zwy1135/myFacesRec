@@ -28,8 +28,8 @@ if __name__=='__main__':
     count = 0
     total = len(nX)
     for i in xrange(total):
-        if y[i]==model.predict(nX[i]):
+        if ny[i]==model.predict(nX[i]):
             count+=1
         print 'expected=',ny[i],r'/ predicted = ',model.predict(nX[i])
-    print 'rate=',count/total
+    print u'正确率=',count/total
         

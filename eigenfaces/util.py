@@ -27,10 +27,3 @@ def read_image(path):
 				raise
     return [np.array(X), y]
     
-def asRowMatrix(X):
-    if len(X)==0:
-        return np.array([])
-    mat = np.empty((0,X[0].size),dtype=uint8)
-    for row in X:
-        mat = np.vstack((mat,row.flatten()))
-    return mat
